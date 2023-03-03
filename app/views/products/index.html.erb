@@ -1,16 +1,14 @@
 <% if notice %>
-<aside id="notice"><%= notice %></aside>
+<aside class="notification is-primary"><%= notice %></aside>
 <% end %>
 
 <h1>Products</h1>
-
-<%= link_to "New product", new_product_path %>
 
 <table class="table">
   <tbody>
     <% @products.each do |product| %>
     <tr class="<%= cycle('is-selected', '') %>">
-      <td class="image"> <%= image_tag(product.image_url, class: 'list_image') %>
+      <td class="image is-128x128"> <%= image_tag(product.image_url, class: 'is-rounded') %>
       </td>
       <td class="description"> <h1><%= product.title %></h1>
       <p> <%= truncate(strip_tags(product.description), length: 80) %> </p>
@@ -20,7 +18,9 @@
           <li><%= link_to 'Show', product %></li>
           <li><%= link_to 'Edit', edit_product_path(product) %></li>
           <li>
-          <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% if %>
+          <%= button_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' } %>
+          <% end %>
           </li>
         </ul>
       </td>
