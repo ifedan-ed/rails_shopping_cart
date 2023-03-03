@@ -1,0 +1,20 @@
+<% if notice %>
+	<aside id="notice"><%= notice %></aside>
+<% end %>
+<div class="container">
+<h1>Welcome To My Catalog My Very Best</h1>
+<ul class="list-group">
+	<% @products.each do |product| %>
+		<li class="list-group-item">
+			<%= image_tag(product.image_url, class: "img-fluid rounded mx-auto d-block") %>
+			<h2><%= product.title %></h2>
+			<p>
+				<%= sanitize(product.description) %>
+			</p>
+			<div class="price">
+				<%= product.price %>
+			</div>
+		</li>
+	<% end %>
+</ul>
+</div>

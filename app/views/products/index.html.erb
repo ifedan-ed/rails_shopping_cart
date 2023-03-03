@@ -1,37 +1,36 @@
 <% if notice %>
-<aside class="alert">  <%= notice %></aside>
+	<aside class="alert">  <%= notice %></aside>
 <% end %>
-
 <h1>Products</h1>
-
 <div class = "container">
-<table class="table table-striped">
-  <tbody>
-    <% @products.each do |product| %>
-    <tr class="<%= cycle('table-primary', 'table-secondary') %>">
-      <td> <%= image_tag(product.image_url, class: 'img-thumbnail') %>
-      </td>
-      <td class="description"> <h1><%= product.title %></h1>
-      <p> <%= truncate(strip_tags(product.description), length: 80) %> </p>
-      </td>
-      <td>
-        <ul>
-          <li><%= link_to 'Show', product %></li>
-          <li><%= link_to 'Edit', edit_product_path(product) %></li>
-          <li>
-          <%= link_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' }, class: "button is-dark" %>
-          </li>
-        </ul>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3">
-      <%= link_to 'New Product', new_product_path %>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+	<table class="table table-striped">
+		<tbody>
+			<% @products.each do |product| %>
+				<tr class="<%= cycle('table-primary', 'table-secondary') %>">
+					<td> <%= image_tag(product.image_url, class: 'img-thumbnail') %>
+					</td>
+					<td class="description">
+						<h1><%= product.title %></h1>
+						<p> <%= truncate(strip_tags(product.description), length: 80) %> </p>
+					</td>
+					<td>
+						<ul class ="list-group-item">
+							<li class ="list-group-item"><%= link_to 'Show', product %></li>
+							<li class ="list-group-item"><%= link_to 'Edit', edit_product_path(product) %></li>
+							<li class ="list-group-item">
+								<%= link_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' }, class: "button is-dark" %>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">
+					<%= link_to 'New Product', new_product_path %>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
 </div>
