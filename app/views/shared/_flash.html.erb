@@ -1,0 +1,12 @@
+
+<%if flash[:notice] %>
+<div class="notification is-primary" role ="alert">
+<button class="delete"></button>
+<strong><%= flash[:notice]%></strong>
+</div>
+
+<%if flash[:alert] %>
+<div class="notification is-primary" role ="alert">
+<button class="delete"></button>
+<strong><%= flash[:alert]%></strong>
+</div>
