@@ -4,23 +4,22 @@
 
 <h1>Products</h1>
 
-<table class="table">
+<div class = "container">
+<table class="table table-striped">
   <tbody>
     <% @products.each do |product| %>
-    <tr class="<%= cycle('is-selected', '') %>">
-      <td class="image is-128x128"> <%= image_tag(product.image_url, class: 'is-rounded') %>
+    <tr class="<%= cycle('table-primary', 'table-secondary') %>">
+      <td> <%= image_tag(product.image_url, class: 'img-thumbnail') %>
       </td>
       <td class="description"> <h1><%= product.title %></h1>
       <p> <%= truncate(strip_tags(product.description), length: 80) %> </p>
       </td>
-      <td class="actions">
-        <ul>
-          <li><%= link_to 'Show', product %></li>
-          <li><%= link_to 'Edit', edit_product_path(product) %></li>
+      <td>
+        <ul class="list-group">
+          <li><%= button_to 'Show', product, class: "button is-dark" %></li>
+          <li><%= button_to 'Edit', edit_product_path(product), class: "button is-dark" %></li>
           <li>
-          <% if %>
-          <%= button_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' } %>
-          <% end %>
+          <%= button_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' }, class: "button is-dark" %>
           </li>
         </ul>
       </td>
@@ -35,4 +34,4 @@
     </tr>
   </tfoot>
 </table>
-
+</div>
