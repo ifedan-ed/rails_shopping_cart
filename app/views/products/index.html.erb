@@ -1,5 +1,5 @@
 <% if notice %>
-<aside class="notification is-primary"><%= notice %></aside>
+<aside class="alert">  <%= notice %></aside>
 <% end %>
 
 <h1>Products</h1>
@@ -15,11 +15,11 @@
       <p> <%= truncate(strip_tags(product.description), length: 80) %> </p>
       </td>
       <td>
-        <ul class="list-group">
-          <li><%= button_to 'Show', product, class: "button is-dark" %></li>
-          <li><%= button_to 'Edit', edit_product_path(product), class: "button is-dark" %></li>
+        <ul>
+          <li><%= link_to 'Show', product %></li>
+          <li><%= link_to 'Edit', edit_product_path(product) %></li>
           <li>
-          <%= button_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' }, class: "button is-dark" %>
+          <%= link_to 'Destroy', product, method: :delete, data: { turbo_confirm: 'Are You Sure You want to delete this product?' }, class: "button is-dark" %>
           </li>
         </ul>
       </td>
