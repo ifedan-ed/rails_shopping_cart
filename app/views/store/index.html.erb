@@ -2,19 +2,29 @@
 	<aside id="notice"><%= notice %></aside>
 <% end %>
 <div class="container">
-<h1>Welcome To My Catalog My Very Best</h1>
-<ul class="list-group">
-	<% @products.each do |product| %>
-		<li class="list-group-item">
-			<%= image_tag(product.image_url, class: "img-fluid rounded mx-auto d-block") %>
-			<h2><%= product.title %></h2>
-			<p>
-				<%= sanitize(product.description) %>
-			</p>
-			<div class="price">
-				<%= product.price %>
-			</div>
-		</li>
-	<% end %>
-</ul>
-</div>
+	<h1>Welcome To My Catalog My Very Best</h1>
+	<ul class="list-group">
+		<% cache @products do %>
+			<% @products.each do |product| %>
+				<% cache product do %>
+					<li class = "list-group">
+						<div class="container">
+							<div class="row grid gap-0 row-gap-3">
+								<div class="col p-2 g-col-6">
+									<%= image_tag(product.image_url, class: "rounded float-start") %>
+								</div>
+								<div class="col-6 p-2 g-col-6">
+									<h2><%= product.title %></h2>
+									<p>
+										<%= sanitize(product.description) %>
+									</p>
+									<div class="price">
+										<%= number_to_currency(product.price) %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				<% end %>
+			</ul>
+		</div>
